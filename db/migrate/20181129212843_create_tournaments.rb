@@ -3,8 +3,8 @@ class CreateTournaments < ActiveRecord::Migration[5.2]
     create_table :tournaments do |t|
       t.string :name
       t.string :place
-      t.string :start_date
-      t.string :final_date
+      t.date :start_date
+      t.date :final_date
 
       t.timestamps
     end

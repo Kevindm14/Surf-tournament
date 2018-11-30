@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 2018_11_29_212843) do
   create_table "tournaments", force: :cascade do |t|
     t.string "name"
     t.string "place"
-    t.string "start_date"
-    t.string "final_date"
+    t.date "start_date"
+    t.date "final_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

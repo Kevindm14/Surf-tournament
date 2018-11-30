@@ -1,16 +1,16 @@
 class TournamentsController < ApplicationController
-  before_action :set_tournament, only: [:update, :show, :destroy]
+  before_action :set_tournament, only: [:update, :show, :destroy, :edit, :show]
   def index
     @tournaments = Tournament.all
   end
 
   def new
-    @tournament = Tournament.new(tournament_params)
+    @tournament = Tournament.new
   end
 
   def create
     @tournament = Tournament.new(tournament_params)
-    @tournament.save
+    @tournament.save  
   end
 
   def update
@@ -28,11 +28,11 @@ class TournamentsController < ApplicationController
   end
 
   def tournament_params
-    params.require(:tournament).require(
+    params.require(:tournament).permit(
       :name,
       :place,
       :start_date,
-      :end_date
+      :final_date
     )
   end
 end

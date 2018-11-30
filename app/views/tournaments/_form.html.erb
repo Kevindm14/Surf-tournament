@@ -1,0 +1,9 @@
+<div>
+  <%= form_for(@tournament) do |t| %>
+    <%= t.text_field :name %>
+    <%= t.text_field :place %>
+    <%= t.date_select(:start_date, prompt: {day: 'Choose day', month: 'Choose month', year: 'Choose year'}) %>
+    <%= t.date_select(:final_date, prompt: {day: 'Choose day', month: 'Choose month', year: 'Choose year'}) %>
+    <%= t.submit %>
+  <% end %>
+</div>
