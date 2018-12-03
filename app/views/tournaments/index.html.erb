@@ -4,17 +4,19 @@
     <th>Place</th>
     <th>Start Date</th>
     <th>Final Date</th>
-    <th colspan="4"></th>
+    <th>Participants for group</th>
+    <th>Category</th>
+    <th colspan="4"></th>    
   </tr>
 
-  <% @tournaments.each do |t| %>
+  <% @tournaments.each do |tournament| %>
     <tr>
-      <td><%= t.name  %><td>
-      <td><%= t.place %></td>
-      <td><%= t.start_date %></td>
-      <td><%= t.final_date %></td>
-      <td><%= link_to 'Delete', t, method: :delete, data: { confirm: '¿Are you sure?'} %></td>
+      <td><%= tournament.name  %><td>
+      <td><%= tournament.place %></td>
+      <td><%= tournament.start_date %></td>
+      <td><%= tournament.final_date %></td>
+      <td><%= link_to 'Delete', tournament, method: :delete, data: { confirm: '¿Are you sure?'} %></td>
     </tr>
-    
   <% end %>
+      <%= link_to 'Create tournament', new_tournament_path %>
 </table>
