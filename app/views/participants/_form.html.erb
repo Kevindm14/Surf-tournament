@@ -1,0 +1,11 @@
+<%= form_for @participant do |p| %>
+  <% @participant.errors.full_messages.each do |message| %>
+    <p style="padding: 2px; background-color: #25639E; display: table;"><%= message %><p>
+  <% end %>
+  <%= p.text_field :name, placeholder: 'Name...' %>
+  <%= p.text_field :last_name, placeholder: 'Last name...' %><br><br>
+  <%= p.select(:gender, options_for_select(["Male", "Female"]), :prompt=>"Please select gender...")%>
+  <h3>Categories<h3>
+    <%= p.collection_check_boxes :category_ids, Category.all, :id, :name %>
+  <%= p.submit %>
+<% end %>

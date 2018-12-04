@@ -6,6 +6,7 @@ class TournamentsController < ApplicationController
 
   def new
     @tournament = Tournament.new
+    
   end
 
   def create
@@ -14,6 +15,15 @@ class TournamentsController < ApplicationController
       redirect_to tournaments_path
     else
       render 'new'
+    end
+  end
+
+  def update
+    @tournament.update(tournament_params)
+    if @tournament.persisted?
+      redirect_to tournaments_path
+    else
+      render 'edit'
     end
   end
 

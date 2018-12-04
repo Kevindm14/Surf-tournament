@@ -1,0 +1,16 @@
+<h2><%= @category.name %></h2><h3>Add participants</h3>
+<table>
+  <tr>
+    <th>Name<th>
+    <th>Categories</th>
+  </tr>
+
+  <% @participants.each do |participant| %>
+    <tr>
+      <td><%= participant.name  %><td>
+      <% participant.categories.each do |category| %>
+        <td><%= category.name %>,</td>
+      <% end %>
+    </tr>
+  <% end %>
+</table>
