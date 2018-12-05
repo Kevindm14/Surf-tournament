@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :tournament do
     name { "Surf" }
     place { "Koombea" }
-    start_date { "01-03-2011" }
-    final_date { "02-04-2012" }
+    start_date { "Wed, 05 Dec 2018" }
+    final_date { "Wed, 05 Dec 2018" }
   end
 end

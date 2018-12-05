@@ -6,8 +6,8 @@
     <% end %>
     <%= t.text_field :name, placeholder: "Name..." %><br>
     <%= t.text_field :place, placeholder: "Place..." %><br>
-    <%= t.date_field(:start_date) %><br>
-    <%= t.date_field(:final_date) %><br>
+    <%= t.date_field(:start_date, min: Date.today) %><br>
+    <%= t.date_field(:final_date, min: Date.today) %><br>
     <div id="tournament_categories">
       <h3>Categories<h3>
       <%= t.fields_for :tournament_categories do |tc| %>
