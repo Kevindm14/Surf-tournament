@@ -19,9 +19,5 @@ describe Tournament, type: :model do
     it "When start date is less than final date" do
       expect(date.final_date).to be > date.start_date
     end
-
-    it "When the date is today" do
-      expect(Date.today).to eq(Date.today)
-    end
   end
 end
