@@ -23,6 +23,18 @@ RSpec.describe TournamentsController, type: :controller do
         }.to change(Tournament, :count).by(1)
       end
     end
+
+    context "With invalid attributes" do
+      it "Not save in database" do
+        expect{
+          post :create, params: {tournament: attributes_for(:invalid_tournament)}
+        }.to change(Tournament, :count).by(0)
+      end
+      it "Render to the tournament/new" do
+        post :create, params: {tournament: attributes_for(:invalid_tournament)}
+        expect(response).to render_template :new
+      end
+    end
   end
   
 
@@ -80,6 +92,8 @@ RSpec.describe TournamentsController, type: :controller do
       create_tournament.reload
       expect(create_tournament.name).to eq('Surf')
       expect(create_tournament.place).to eq('Koombea')
+      expect(create_tournament.start_date).to eq(Date.today)
+      expect(create_tournament.final_date).to eq(Date.today + 1.day)
     end
 
     it "Redirect to the updated tournament" do

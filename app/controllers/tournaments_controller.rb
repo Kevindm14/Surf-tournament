@@ -17,6 +17,15 @@ class TournamentsController < ApplicationController
     end
   end
 
+  def update
+    @tournament.update(tournament_params)
+    if @tournament.persisted?
+      redirect_to @tournament
+    else
+      render 'edit'
+    end
+  end
+
   def destroy
     @tournament.destroy
     redirect_to tournaments_path
