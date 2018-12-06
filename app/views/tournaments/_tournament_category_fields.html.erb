@@ -1,0 +1,6 @@
+<div class="nested-fields">
+  <%= f.select(:category_id, options_from_collection_for_select(Category.all, :id, :name), :prompt=>"Please select...") %>
+  <h3>Participants for group: </h3>
+  <%= f.select(:participants_per_group, options_for_select(1..4),:prompt=>"Please select...")%>
+  <%= link_to_remove_association "Remove", f %>
+</div>

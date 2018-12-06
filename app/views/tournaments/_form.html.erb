@@ -1,0 +1,21 @@
+<div>
+  <h3>Information about tournament</h3>
+  <%= form_for(@tournament) do |t| %>
+    <% @tournament.errors.full_messages.each do |message| %>
+      <p style="padding: 2px; background-color: red; display: table;"><%= message %><p>
+    <% end %>
+    <%= t.text_field :name, placeholder: "Name..." %><br>
+    <%= t.text_field :place, placeholder: "Place..." %><br>
+    <%= t.date_field(:start_date, min: Date.today) %><br>
+    <%= t.date_field(:final_date, min: Date.today) %><br>
+    <div id="tournament_categories">
+      <h3>Categories<h3>
+      <%= t.fields_for :tournament_categories do |tc| %>
+        <%= render 'tournament_category_fields', f: tc %>
+      <% end %>
+      <%= link_to_add_association 'Add', t, :tournament_categories %>
+    </div>
+    <%= t.submit%>
+  <% end %>
+</div>
+
