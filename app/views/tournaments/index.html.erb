@@ -1,24 +1,58 @@
-<table>
-  <tr>
-    <th>Name<th>
-    <th>Place</th>
-    <th>Start Date</th>
-    <th>Final Date</th>
-    <th>Categories</th>
-  </tr>
+<div id="page-title">
+  <h1 class="page-header text-overflow">Tournaments</h1>
 
-  <% @tournaments.each do |tournament| %>
-    <tr>
-      <td><%= tournament.name  %><td>
-      <td><%= tournament.place %></td>
-      <td><%= tournament.start_date %></td>
-      <td><%= tournament.final_date %></td>
-      <% tournament.categories.each do |category| %>
-      <td><%= link_to category.name, edit_category_path(category.id) %></td>
-      <% end %>
-      <td><%= link_to 'Edit', edit_tournament_path(tournament) %></td>
-      <td><%= link_to 'Delete', tournament, method: :delete, data: { confirm: '¿Are you sure?'} %></td>
-    </tr>
-  <% end %>
-      <%= link_to 'Create tournament', new_tournament_path %>
-</table>
+  <!--Searchbox-->
+  <div class="searchbox">
+    <div class="input-group custom-search-form">
+      <%= link_to 'Create tournament', new_tournament_path, :class => "btn btn-info" %>
+      <span class="input-group-btn">
+        <button class="text-muted" type="button"><i class="fa fa-search"></i></button>
+      </span>
+    </div>
+  </div>
+</div>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+<!--End page title-->
+
+
+<div class="col-sm-12">
+  <div class="panel">
+    <div class="panel-heading">
+      <h3 class="panel-title"></h3>
+    </div>
+    <!-- Striped Table -->
+    <!--===================================================-->
+    <div class="panel-body">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Place</th>
+              <th>Start Date</th>
+              <th>Final Date</th>
+              <th>Categories</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @tournaments.each do |tournament| %>
+            <tr>
+              <td><%= tournament.name %></td>
+              <td><%= tournament.place %></td>
+              <td><%= tournament.start_date %></td>
+              <td><%= tournament.final_date %></td>
+              <% tournament.categories.each do |category| %>
+                <td><%= link_to category.name, edit_category_path(category.id) %></td>
+              <% end %>
+              <td><%= link_to 'Edit', edit_tournament_path(tournament) %></td>
+              <td><%= link_to 'Delete', tournament, method: :delete, data: { confirm: '¿Are you sure?'} %></td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!--===================================================-->
+    <!-- End Striped Table -->
+  </div>
+</div>
