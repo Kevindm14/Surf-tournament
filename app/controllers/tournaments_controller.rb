@@ -20,7 +20,7 @@ class TournamentsController < ApplicationController
   def update
     @tournament.update(tournament_params)
     if @tournament.persisted?
-      redirect_to @tournament
+      redirect_to tournaments_path
     else
       render 'edit'
     end

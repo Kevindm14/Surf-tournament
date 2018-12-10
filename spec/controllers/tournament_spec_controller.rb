@@ -97,7 +97,7 @@ RSpec.describe TournamentsController, type: :controller do
     end
 
     it "Redirect to the updated tournament" do
-      expect(response).to redirect_to (create_tournament)
+      expect(response).to redirect_to tournaments_path
     end
   end
 

@@ -1,0 +1,21 @@
+<table>
+  <tr>
+    <th>Name<th>
+    <th>email</th>
+    <th>Actions</th>
+  </tr>
+
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.name %><%= user.last_name %><td>
+      <td><%= user.email %></td>
+      <% if current_user && current_user.admin %>
+      <td><%= link_to 'Edit', edit_user_path(user) %>
+      <td><%= link_to 'Delete', user, method: :delete, data: { confirm: '¿Are you sure?'} %></td>
+      <% end %>
+    </tr>
+  <% end %>
+    <% if current_user && current_user.admin %>
+      <%= link_to 'Add Judge', new_user_path %>
+    <% end %>
+</table>

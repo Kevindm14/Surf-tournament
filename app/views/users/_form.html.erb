@@ -1,0 +1,10 @@
+<%= form_for(@user) do |u| %>
+  <% @user.errors.full_messages.each do |message| %>
+    <p style="padding: 2px; background-color: red; display: table;"><%= message %><p>
+  <% end %>
+  <%= u.text_field :name, placeholder: 'name...' %>
+  <%= u.text_field :last_name, placeholder: 'Last name...' %>
+  <%= u.email_field :email, placeholder: 'Email...' %>
+  <%= u.password_field :password, placeholder: 'Password...' %>
+  <%= u.submit "Create judge" %>
+<% end %>
