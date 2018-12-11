@@ -20,13 +20,11 @@
       <% tournament.tournament_categories.each do |participant| %>
         <td><%= participant.participants_per_group %></td>
       <% end %>
-      <% if current_user && current_user.admin %>
-      <td><%= link_to 'Edit', edit_tournament_path(tournament) %>
-      <td><%= link_to 'Delete', tournament, method: :delete, data: { confirm: '¿Are you sure?'} %></td>
-      <% end %>
+      <td><% if can? :update, tournament %> <%= link_to 'Edit', edit_tournament_path(tournament) %><% end %></td>
+      <td><% if can? :destroy, tournament %> <%= link_to 'Delete', tournament, method: :delete, data: { confirm: '¿Are you sure?'} %><% end %></td>
     </tr>
   <% end %>
-    <% if current_user && current_user.admin %>
+    <% if can? :create, @tournament %>
       <%= link_to 'Create tournament', new_tournament_path %>
-    <% end %>  
+    <% end %>
 </table>

@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  authorize_resource
+  before_action :authenticate_user!, only: [:create, :update, :new, :destroy, :edit]
   before_action :set_user, only: [:destroy, :edit, :update]
 
   def index
