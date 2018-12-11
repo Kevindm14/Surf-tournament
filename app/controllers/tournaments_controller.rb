@@ -1,4 +1,6 @@
 class TournamentsController < ApplicationController
+  authorize_resource
+  before_action :authenticate_user!, only: [:create, :update, :new, :destroy, :edit]
   before_action :set_tournament, only: [:update, :show, :destroy, :edit, :show]
   def index
     @tournaments = Tournament.all
@@ -20,7 +22,7 @@ class TournamentsController < ApplicationController
   def update
     @tournament.update(tournament_params)
     if @tournament.persisted?
-      redirect_to @tournament
+      redirect_to tournaments_path
     else
       render 'edit'
     end
