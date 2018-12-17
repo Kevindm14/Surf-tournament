@@ -1,19 +1,46 @@
-<table>
-  <tr>
-    <th>Name<th>
-    <th>email</th>
-    <th>Actions</th>
-  </tr>
+<div id="page-title">
+  <h1 class="page-header text-overflow">Judges</h1>
+  <div class="searchbox">
+    <div class="input-group custom-search-form">
+      <% if can? :create, @user %>
+        <%= link_to 'Add Judge', new_user_path, :class => "btn btn-info" %>
+      <% end %>
+      <span class="input-group-btn">
+        <button class="text-muted" type="button"><i class="fa fa-search"></i></button>
+      </span>
+    </div>
+  </div>
+</div>
 
-  <% @users.each do |user| %>
-    <tr>
-      <td><%= user.name %><%= user.last_name %><td>
-      <td><%= user.email %></td>
-      <td><% if can? :update, user %><%= link_to 'Edit', edit_user_path(user) %><% end %></td>
-      <td><% if can? :destroy, user %><%= link_to 'Delete', user, method: :delete, data: { confirm: '¿Are you sure?'} %><% end %></td>
-    </tr>
-  <% end %>
-    <% if can? :create, @user %>
-      <%= link_to 'Add Judge', new_user_path %>
-    <% end %>
-</table>
+<div class="col-sm-8">
+  <div class="panel">
+    <div class="panel-heading">
+      <h3 class="panel-title"></h3>
+    </div>
+    <div class="panel-body">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each do |user| %>
+              <tr>
+                <td><%= user.name %></td>
+                <td><%= user.email %></td>
+                <td>
+                  <%= link_to 'Edit', edit_user_path(user), :class => "btn btn-warning" if can? :update, user  %> -
+                  <%= link_to 'Delete', user, method: :delete, data: { confirm: '¿Are you sure?'}, :class => "btn btn-danger" if can? :destroy, user %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

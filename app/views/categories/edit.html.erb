@@ -1,6 +1,6 @@
 <h3>Add participants</h3>
 <h5>Participants per groups:
-  <%= @category.tournament_categories.map(&:participants_per_group) %>
+  <%= @category.tournament_categories.map(&:participants_per_group).join(' ') %>
 </h5>
 <%= form_for [@tournament, @category] do |c| %>
   <div>

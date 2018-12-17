@@ -12,43 +12,24 @@
   </div>
 </div>
 
-<div class="col-sm-10">
-  <div class="panel">
-    <div class="panel-heading">
-      <h3 class="panel-title"></h3>
-    </div>
-    <div class="panel-body">
-      <div class="table-responsive">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Place</th>
-              <th>Start Date</th>
-              <th>Final Date</th>
-              <th>Category</th>
-              <th>Participants for group</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @tournaments.each do |tournament| %>
-              <tr>
-                <td><%= tournament.name %></td>
-                <td><%= tournament.place %></td>
-                <td><%= tournament.start_date %></td>
-                <td><%= tournament.final_date %></td>
-                <% tournament.categories.each do |category| %>
-                  <td><%= link_to category.name, tournament_category_path(tournament, category) %></td>
-                <% end %>
-                <td><%= tournament.tournament_categories.map(&:participants_per_group).join(',') %></td>
-                <td><%= link_to 'Edit', edit_tournament_path(tournament) if can? :update, tournament  %> -
-                    <%= link_to 'Delete', tournament, method: :delete, data: { confirm: '¿Are you sure?'} if can? :destroy, tournament  %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+<% @tournaments.each do |tournament| %>
+  <div class="col-sm-4">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <%= tournament.name %>
+          <% tournament.categories.each do |category| %>
+            <td><%= link_to category.name, tournament_category_path(tournament, category), :class => "btn-sm btn-success" %></td>
+          <% end %>
+        </h3>
       </div>
-    </div>
+      <div class="panel-body">
+        <div class="table-responsive">
+          <%= link_to 'Edit', edit_tournament_path(tournament) %>
+        </div>
+        <div class="list-divider"></div>
+        <%= link_to 'Show tournament', tournament %>
+      </div>
+    </div> 
   </div>
-</div>
+<% end %>

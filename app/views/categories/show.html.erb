@@ -1,32 +1,22 @@
 <div id="page-title">
   <h1 class="page-header text-overflow"><%= @category.name %></h1>
+  <p>Phase</p>
   <%= link_to 'Add participants', edit_tournament_category_path(@tournament, @category), :class => "btn btn-primary" if @groups.length <= 0 %>
 </div>
 
-<div class="col-sm-8">
-  <div class="panel">
-    <div class="panel-heading">
-      <h3 class="panel-title"></h3>
-    </div>
-    <div class="panel-body">
-      <div class="table-responsive">
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th>Group Name</th>
-              <th>Participants</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @groups.each do |group| %>
-              <tr>
-                <td><%= group.name %></td>
-                <td><%= group.participants.map(&:name).join(', ') %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+<% @groups.each do |group| %>
+  <div class="col-sm-4">
+    <div class="panel">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= group.name %></h3>
+      </div>
+      <div class="panel-body">
+        <% group.participants.each do |participant| %>
+          <li style="list-style: none;"><p><%= participant.name %></p></li>
+        <% end %>
+        <div class="list-divider"></div>
+        <%= link_to 'Quality', edit_tournament_category_group_path(@tournament, @category, group), :class => "btn btn-primary" if can? :update, group %>
       </div>
     </div>
   </div>
-</div>
+<% end %>

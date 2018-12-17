@@ -90,6 +90,10 @@
 										<%= link_to 'Participants', participants_path, :class => "fa fa-dashboard" %><br>
 									</li>
 
+									<li class="active-link">
+										<%= link_to 'Judge', users_path, :class => "fa fa-dashboard" if can? :index, @user %><br>
+									</li>
+
 									<li class="list-divider"></li>
 
                   <!--Menu list item-->

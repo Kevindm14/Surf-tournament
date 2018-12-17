@@ -1,10 +1,50 @@
-<%= form_for(@user) do |u| %>
-  <% @user.errors.full_messages.each do |message| %>
-    <p style="padding: 2px; background-color: red; display: table;"><%= message %><p>
-  <% end %>
-  <%= u.text_field :name, placeholder: 'name...' %>
-  <%= u.text_field :last_name, placeholder: 'Last name...' %>
-  <%= u.email_field :email, placeholder: 'Email...' %>
-  <%= u.password_field :password, placeholder: 'Password...' %>
-  <%= u.submit "Create judge" %>
-<% end %>
+<div class="col-sm-6">
+  <div class="panel">
+    <div class="panel-heading">
+      <h3 class="panel-title"></h3>
+    </div>    
+    <%= form_for(@user) do |u| %>
+      <% @user.errors.full_messages.each do |message| %>
+        <p class="error-message" style="padding: 2px; background-color: red; display: table;"><%= message %><p>
+      <% end %>
+    <!--Block Styled Form -->
+    <!--===================================================-->
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label">Name</label>
+              <%= u.text_field :name, :class => "form-control" %>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label">Last Name</label>
+              <%= u.text_field :last_name, :class => "form-control" %>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label">Email</label>
+              <%= u.text_field :email, :class => "form-control" %>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="form-group">
+              <label class="control-label">Password</label>
+              <%= u.text_field :password, :class => "form-control" %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-footer text-right">
+        <%= u.submit :class => "btn btn-info" %>
+      </div>
+      <% end %>
+    <!--===================================================-->
+    <!--End Block Styled Form -->
+
+  </div>
+</div>
