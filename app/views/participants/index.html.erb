@@ -1,0 +1,46 @@
+<div id="page-title">
+  <h1 class="page-header text-overflow">Participants</h1>
+  <div class="searchbox">
+    <div class="input-group custom-search-form">
+      <% if can? :create, @participant %>
+        <%= link_to 'Add participant', new_participant_path, :class => "btn btn-info" %>
+      <% end %>
+      <span class="input-group-btn">
+        <button class="text-muted" type="button"><i class="fa fa-search"></i></button>
+      </span>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-8">
+  <div class="panel">
+    <div class="panel-heading">
+      <h3 class="panel-title"></h3>
+    </div>
+    <div class="panel-body">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Gender</th>
+              <th>Categories</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @participants.each do |participant| %>
+              <tr>
+                <td><%= participant.name %></td>
+                <td><%= participant.gender %></td>
+                <td><%= participant.categories.map(&:name).join(', ') %></td>
+                <td><%= link_to 'Edit', edit_participant_path(participant), :class => "btn btn-warning" if can? :update, participant  %> -
+                    <%= link_to 'Delete', participant, method: :delete, data: { confirm: '¿Are you sure?'}, :class => "btn btn-danger" if can? :destroy, participant  %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

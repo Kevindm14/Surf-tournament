@@ -4,6 +4,7 @@ FactoryBot.define do
     last_name { Faker::Name.last_name }
     email { Faker::Internet.unique.email }
     password { Faker::Internet.password }
+    admin { true }
   end
 
   factory :invalid_user, parent: :user do

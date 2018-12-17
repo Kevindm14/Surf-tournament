@@ -1,0 +1,6 @@
+<%= form_for(@group) do |t| %>
+  <%= t.text_field :name %><br><br>
+  <%= t.collection_check_boxes(:participant_ids, @group.category.participants.all, :id, :name) %><br><br>
+  <%= t.submit %>
+<% end %>
+<%= link_to 'Back', @category  %>

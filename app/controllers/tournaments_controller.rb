@@ -1,7 +1,7 @@
 class TournamentsController < ApplicationController
   authorize_resource
-  before_action :authenticate_user!, only: [:create, :update, :new, :destroy, :edit]
   before_action :set_tournament, only: [:update, :show, :destroy, :edit, :show]
+
   def index
     @tournaments = Tournament.all
   end
@@ -37,7 +37,6 @@ class TournamentsController < ApplicationController
 
   def set_tournament
     @tournament = Tournament.find(params[:id])
-    @categories = Category.all
   end
 
   def tournament_params

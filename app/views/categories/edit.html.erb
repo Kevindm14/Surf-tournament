@@ -1,0 +1,25 @@
+<h3>Add participants</h3>
+<h5>Participants per groups:
+  <%= @category.tournament_categories.map(&:participants_per_group) %>
+</h5>
+<%= form_for [@tournament, @category] do |c| %>
+  <div>
+    <%= c.collection_check_boxes(:participant_ids, @category.participants, :id, :name) do |b| %>
+      <div class="row">
+        <%= b.label(class: "check_box") do |object| %>
+          <div class="col-xs-4">
+          <%= b.check_box(class: "check_box") %>
+          </div>
+
+          <div class="col-xs-8">
+          <%= b.object.name %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div><br>
+  <%= c.submit value: "Draw Lots", :class => "btn btn-success" %>
+<% end %>
+
+
+

@@ -1,0 +1,32 @@
+<div id="page-title">
+  <h1 class="page-header text-overflow"><%= @category.name %></h1>
+  <%= link_to 'Add participants', edit_tournament_category_path(@tournament, @category), :class => "btn btn-primary" if @groups.length <= 0 %>
+</div>
+
+<div class="col-sm-8">
+  <div class="panel">
+    <div class="panel-heading">
+      <h3 class="panel-title"></h3>
+    </div>
+    <div class="panel-body">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Group Name</th>
+              <th>Participants</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @groups.each do |group| %>
+              <tr>
+                <td><%= group.name %></td>
+                <td><%= group.participants.map(&:name).join(', ') %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

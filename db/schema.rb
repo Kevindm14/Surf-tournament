@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_10_164658) do
+ActiveRecord::Schema.define(version: 2018_12_17_155749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,8 +32,10 @@ ActiveRecord::Schema.define(version: 2018_12_10_164658) do
     t.integer "phase"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "tournament_id"
     t.bigint "category_id"
     t.index ["category_id"], name: "index_groups_on_category_id"
+    t.index ["tournament_id"], name: "index_groups_on_tournament_id"
   end
 
   create_table "participant_groups", force: :cascade do |t|
@@ -88,6 +90,7 @@ ActiveRecord::Schema.define(version: 2018_12_10_164658) do
   end
 
   add_foreign_key "groups", "categories"
+  add_foreign_key "groups", "tournaments"
   add_foreign_key "participant_groups", "groups"
   add_foreign_key "participant_groups", "participants"
   add_foreign_key "tournament_categories", "categories"
