@@ -11,6 +11,7 @@ describe Tournament, type: :model do
     it { should accept_nested_attributes_for(:tournament_categories)}
     it { should have_many(:tournament_categories)}
     it { should have_many(:categories).through(:tournament_categories)}
+    it { should have_many(:groups)}
     
     it "When start date is greater than final date" do
       expect(date.final_date).to be > date.start_date

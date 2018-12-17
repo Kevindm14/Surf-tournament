@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe TournamentsController, type: :controller do
+  login_user
   let(:create_tournament) { create(:tournament) }
+  it { should use_before_action(:set_tournament)}
 
   describe "GET #index" do
     it "Redirect to the index" do
@@ -98,19 +100,6 @@ RSpec.describe TournamentsController, type: :controller do
 
     it "Redirect to the updated tournament" do
       expect(response).to redirect_to tournaments_path
-    end
-  end
-
-
-  describe "GET #show" do
-    before { get :show, params: { id: create_tournament } }
-
-    it "assigns the requested tournament to @tournaments" do
-      expect(assigns(:tournament)).to eq (create_tournament)
-    end
-    
-    it "renders the :show template" do
-      expect(response).to render_template :show
     end
   end
 end

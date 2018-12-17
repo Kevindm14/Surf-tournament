@@ -1,27 +1,22 @@
 <div id="page-title">
   <h1 class="page-header text-overflow">Tournaments</h1>
-
-  <!--Searchbox-->
   <div class="searchbox">
     <div class="input-group custom-search-form">
-      <%= link_to 'Create tournament', new_tournament_path if can? :create, :class => "btn btn-info" %>
+      <% if can? :create, @tournament %>
+        <%= link_to 'Create tournament', new_tournament_path, :class => "btn btn-info" %>
+      <% end %>
       <span class="input-group-btn">
         <button class="text-muted" type="button"><i class="fa fa-search"></i></button>
       </span>
     </div>
   </div>
 </div>
-<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-<!--End page title-->
 
-
-<div class="col-sm-6">
+<div class="col-sm-10">
   <div class="panel">
     <div class="panel-heading">
       <h3 class="panel-title"></h3>
     </div>
-    <!-- Striped Table -->
-    <!--===================================================-->
     <div class="panel-body">
       <div class="table-responsive">
         <table class="table table-striped">
@@ -31,7 +26,9 @@
               <th>Place</th>
               <th>Start Date</th>
               <th>Final Date</th>
-              <th>Categories</th>
+              <th>Category</th>
+              <th>Participants for group</th>
+              <th>Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -41,15 +38,17 @@
                 <td><%= tournament.place %></td>
                 <td><%= tournament.start_date %></td>
                 <td><%= tournament.final_date %></td>
-                <td><%= link_to 'Edit', edit_tournament_path(tournament) if can? :update, tournament %></td>
-                <td><%= link_to 'Delete', tournament, method: :delete, data: { confirm: '¿Are you sure?'} if can? :destroy, tournament %></td>
+                <% tournament.categories.each do |category| %>
+                  <td><%= link_to category.name, tournament_category_path(tournament, category) %></td>
+                <% end %>
+                <td><%= tournament.tournament_categories.map(&:participants_per_group).join(',') %></td>
+                <td><%= link_to 'Edit', edit_tournament_path(tournament) if can? :update, tournament  %> -
+                    <%= link_to 'Delete', tournament, method: :delete, data: { confirm: '¿Are you sure?'} if can? :destroy, tournament  %></td>
               </tr>
             <% end %>
           </tbody>
         </table>
       </div>
     </div>
-    <!--===================================================-->
-    <!-- End Striped Table -->
   </div>
 </div>

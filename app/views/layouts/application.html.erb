@@ -32,11 +32,11 @@
 				<!--================================-->
 				<div class="navbar-content clearfix">
           <div style="float: right;">
-          <% if current_user %>
-            <%= link_to 'Sign out', destroy_user_session_path, method: :delete, id: 'sign_out', :class => "btn btn-danger" %>
-          <% else %>
-            <%= link_to 'Login', new_user_session_path, :class => "btn btn-info" %>
-          <% end %>
+          	<% if current_user %>
+            	<%= link_to 'Sign out', destroy_user_session_path, method: :delete, id: 'sign_out', :class => "btn btn-danger" %>
+          	<% else %>
+            	<%= link_to 'Login', new_user_session_path, :class => "btn btn-info" %>						
+          	<% end %>
           </div>
 				</div>
 			</div>
@@ -52,10 +52,9 @@
 				<div id="page-content">
 					
 					<div class="row">
+						<p class="notice"><%= notice %></p>
+            <p class="alert"><%= alert %></p>
 						<div class="col-lg-12">
-              <p class="notice"><%= notice %></p>
-              <p class="alert"><%= alert %></p>
-              <%= render 'layouts/authentication'%>
                 <%= yield %>
 						</div>
 					</div>
@@ -83,8 +82,12 @@
 								<ul id="mainnav-menu" class="list-group">									
 						
 									<!--Menu list item-->
-									<li class="">
+									<li class="active-link">
 										<%= link_to 'Tournaments', tournaments_path, :class => "fa fa-dashboard" %>
+									</li>
+									
+									<li class="active-link">
+										<%= link_to 'Participants', participants_path, :class => "fa fa-dashboard" %><br>
 									</li>
 
 									<li class="list-divider"></li>
@@ -104,45 +107,9 @@
 			<!--===================================================-->
 			<!--END MAIN NAVIGATION-->
 		</div>
-		<!-- FOOTER -->
-		<!--===================================================-->
-		<footer id="footer">
-			<!-- Visible when footer positions are fixed -->
-			<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-			<div class="show-fixed pull-right">
-				<ul class="footer-list list-inline">
-					<li>
-						<p class="text-sm">SEO Proggres</p>
-						<div class="progress progress-sm progress-light-base">
-							<div style="width: 80%" class="progress-bar progress-bar-danger"></div>
-						</div>
-					</li>
-
-					<li>
-						<p class="text-sm">Online Tutorial</p>
-						<div class="progress progress-sm progress-light-base">
-							<div style="width: 80%" class="progress-bar progress-bar-primary"></div>
-						</div>
-					</li>
-					<li>
-						<button class="btn btn-sm btn-dark btn-active-success">Checkout</button>
-					</li>
-				</ul>
-			</div>
-			<!-- Visible when footer positions are static -->
-			<!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-			<div class="hide-fixed pull-right pad-rgt">Currently v2.2</div>
-			<p class="pad-lft">&#0169; 2018 koombea</p>
-		</footer>
-		<!--===================================================-->
-		<!-- END FOOTER -->
-		<!-- SCROLL TOP BUTTON -->
-		<!--===================================================-->
-		<button id="scroll-top" class="btn"><i class="fa fa-chevron-up"></i></button>
-		<!--===================================================-->
 	</div>
 	<!--===================================================-->
-	<!-- END OF CONTAINER -->    
+	<!-- END OF CONTAINER -->
   </body>
 </html>
 

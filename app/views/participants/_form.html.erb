@@ -3,8 +3,8 @@
     <div class="panel-heading">
       <h3 class="panel-title">Information about tournament</h3>
     </div>    
-    <%= form_for(@tournament) do |t| %>
-      <% @tournament.errors.full_messages.each do |message| %>
+    <%= form_for @participant do |p| %>
+      <% @participant.errors.full_messages.each do |message| %>
         <p class="error-message" style="padding: 2px; background-color: red; display: table;"><%= message %><p>
       <% end %>
     <!--Block Styled Form -->
@@ -14,41 +14,44 @@
           <div class="col-sm-6">
             <div class="form-group">
               <label class="control-label">Name</label>
-              <%= t.text_field :name, :class => "form-control" %>
+              <%= p.text_field :name, :class => "form-control" %>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group">
               <label class="control-label">Place</label>
-              <%= t.text_field :place, :class => "form-control" %>
+              <%= p.text_field :last_name, :class => "form-control" %>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group">
-              <label class="control-label">Start Date</label>
-              <%= t.date_field(:start_date, min: Date.today) %><br>
+              <label class="control-label">Gender</label>
+              <%= p.select(:gender, options_for_select(["Male", "Female"]), :prompt=>"Please select gender...")%>
             </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="form-group">
-              <label class="control-label">Final Date</label>
-              <%= t.date_field(:final_date, min: Date.today) %><br>
-            </div>
-          </div>
+          </div><br>
 
-          <div id="tournament_categories">
-            <h3 class="control-label">Categories</h3>
-            <%= t.fields_for :tournament_categories do |tc| %>
-              <%= render 'tournament_category_fields', f: tc %>
+          <div id="tournament_categories" style="float: left;">
+            <h4 class="control-label">Categories</h4>
+            <%= p.collection_check_boxes(:category_ids, Category.all, :id, :name) do |b| %>
+              <div class="row">
+                <%= b.label(class: "check_box") do |object| %>
+                  <div class="col-xs-4">
+                  <%= b.check_box(class: "check_box") %>
+                  </div>
+
+                  <div class="col-xs-8">
+                  <%= b.object.name %>
+                  </div>
+                <% end %>
+              </div>
             <% end %>
-            <%= link_to_add_association 'Add', t, :tournament_categories %>
           </div>
         </div>
       </div>
       <div class="panel-footer text-right">
-        <%= t.submit :class => "btn btn-info" %>
+        <%= p.submit :class => "btn btn-info" %>
       </div>
       <% end %>
     <!--===================================================-->
@@ -56,4 +59,3 @@
 
   </div>
 </div>
-

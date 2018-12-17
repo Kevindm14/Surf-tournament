@@ -7,6 +7,8 @@ class Ability
       can :manage, :all
     else
       can :read, Tournament
+      can :read, Category
+      can :read, Participant
     end
   end
 end
