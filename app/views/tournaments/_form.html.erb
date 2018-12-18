@@ -27,30 +27,29 @@
         <div class="row">
           <div class="col-sm-6">
             <div class="form-group">
-              <label class="control-label">Start Date</label>
+              <label class="control-label">Start Date</label><br>
               <%= t.date_field(:start_date, min: Date.today) %><br>
             </div>
           </div>
           <div class="col-sm-6">
             <div class="form-group">
-              <label class="control-label">Final Date</label>
+              <label class="control-label">Final Date</label><br>
               <%= t.date_field(:final_date, min: Date.today) %><br>
             </div>
           </div>
 
           <div id="tournament_categories">
-            <h3 class="control-label">Categories</h3>
             <%= t.fields_for :tournament_categories do |tc| %>
               <%= render 'tournament_category_fields', f: tc %>
             <% end %>
-            <%= link_to_add_association 'Add', t, :tournament_categories %>
+            <%= link_to_add_association 'Add Category', t, :tournament_categories, class: "btn-sm btn-primary" %>
           </div>
         </div>
       </div>
       <div class="panel-footer text-right">
         <%= t.submit :class => "btn btn-info" %>
       </div>
-      <% end %>
+    <% end %>
     <!--===================================================-->
     <!--End Block Styled Form -->
 

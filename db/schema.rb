@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_17_155749) do
+ActiveRecord::Schema.define(version: 2018_12_17_220422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,18 @@ ActiveRecord::Schema.define(version: 2018_12_17_155749) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "scores", force: :cascade do |t|
+    t.integer "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "participant_id"
+    t.bigint "group_id"
+    t.bigint "user_id"
+    t.index ["group_id"], name: "index_scores_on_group_id"
+    t.index ["participant_id"], name: "index_scores_on_participant_id"
+    t.index ["user_id"], name: "index_scores_on_user_id"
+  end
+
   create_table "tournament_categories", force: :cascade do |t|
     t.integer "participants_per_group"
     t.datetime "created_at", null: false
@@ -93,6 +105,9 @@ ActiveRecord::Schema.define(version: 2018_12_17_155749) do
   add_foreign_key "groups", "tournaments"
   add_foreign_key "participant_groups", "groups"
   add_foreign_key "participant_groups", "participants"
+  add_foreign_key "scores", "groups"
+  add_foreign_key "scores", "participants"
+  add_foreign_key "scores", "users"
   add_foreign_key "tournament_categories", "categories"
   add_foreign_key "tournament_categories", "tournaments"
 end

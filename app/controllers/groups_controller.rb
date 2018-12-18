@@ -6,7 +6,8 @@ class GroupsController < ApplicationController
   end
 
   def update
-    if @group.persisted?
+    if current_user
+      @group.update(scores)
       redirect_to tournaments_path
     else
       render 'edit'
@@ -14,6 +15,10 @@ class GroupsController < ApplicationController
   end
 
   private
+
+  def scores
+    params.require(:group).permit(score_ids: [])
+  end
 
   def set_group
     @tournament = Tournament.find params[:tournament_id]

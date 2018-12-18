@@ -3,7 +3,7 @@
   <div class="searchbox">
     <div class="input-group custom-search-form">
       <% if can? :create, @participant %>
-        <%= link_to 'Add participant', new_participant_path, :class => "btn btn-info" %>
+        <%= link_to 'Add participant', new_participant_path, :class => "btn btn-primary", :style => "float: right;" %>
       <% end %>
       <span class="input-group-btn">
         <button class="text-muted" type="button"><i class="fa fa-search"></i></button>
@@ -12,7 +12,7 @@
   </div>
 </div>
 
-<div class="col-sm-8">
+<div class="col-sm-12">
   <div class="panel">
     <div class="panel-heading">
       <h3 class="panel-title"></h3>

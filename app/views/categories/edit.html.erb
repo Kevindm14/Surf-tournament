@@ -1,7 +1,13 @@
+<div class="alert alert-danger" role="alert"><%= alert %>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
 <h3>Add participants</h3>
-<h5>Participants per groups:
+<p>Participants per groups:
   <%= @category.tournament_categories.map(&:participants_per_group).join(' ') %>
-</h5>
+</p>
 <%= form_for [@tournament, @category] do |c| %>
   <div>
     <%= c.collection_check_boxes(:participant_ids, @category.participants, :id, :name) do |b| %>
